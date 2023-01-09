@@ -1,16 +1,21 @@
-
 import styled from "styled-components";
-import {useState} from "react";
+import { useState } from "react";
+import Portfolio from "../components/Portfolio";
 
 const PortpolioPageContainer = styled.div`
-    backgorund-color = black;
-`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f7f7f7;
+`;
 
-function PortpolioPage(){
-    return(
-        <PortpolioPageContainer></PortpolioPageContainer>
-    );
+function PortpolioPage() {
+  return (
+    <PortpolioPageContainer>
+      <Portfolio></Portfolio>
+    </PortpolioPageContainer>
+  );
 }
-
 
 export default PortpolioPage;
