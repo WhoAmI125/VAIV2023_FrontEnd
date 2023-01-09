@@ -55,9 +55,11 @@ const KakaoImageContainer = styled.div<IKakaoImageContainer>`
 
 function LoginBox() {
     const [isOnMouse, setIsOnMouse] = useState(false);
+    const navigate = useNavigate();
 
     function handleKakaoLogin(){
         alert("login");
+        navigate("/toppick");
     };
 
     const handleOnMouse = () => {

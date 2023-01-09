@@ -3,7 +3,9 @@ import styled from "styled-components";
 import {useState} from "react";
 
 const PortpolioPageContainer = styled.div`
-    backgorund-color = black;
+    display: flex;
+    height: 100vh;
+    background-color: green;
 `
 
 function PortpolioPage(){
