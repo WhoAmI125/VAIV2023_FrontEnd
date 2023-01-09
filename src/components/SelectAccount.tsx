@@ -16,7 +16,6 @@ const AccountOption = styled.option``;
 function SelectAccount() {
   // DB에서 계좌 리스트 불러오기
   const tempAccountList = ["skku", "vaiv", "winter"];
-
   return (
     <>
       <label>현재 계좌</label>
