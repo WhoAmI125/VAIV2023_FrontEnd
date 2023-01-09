@@ -6,8 +6,12 @@ import skku_logo from "../assets/images/skku_logo.png";
 import vaiv_logo from "../assets/images/vaiv_logo.png";
 import { motion } from "framer-motion";
 import React, {useState} from "react";
+import KakaoLogin from "react-kakao-login";
+import { KAKAO_KEY } from "../data/KakaoLoginData";
+
 
 const LoginBoxContainer = styled.div`
+    display:flex;
     flex-direction: column;
     background-color: #f7f7f7;
     width: 40vw;
@@ -50,13 +54,37 @@ const KakaoImageContainer = styled.div<IKakaoImageContainer>`
     cursor: pointer;
 `
 
+const KakaoBtnWrapper = styled.div`
+    display: flex;
+    height: 18vh;
+    width: 40vw;
+    justify-content: center;
+    align-items : center;
+    padding-bottom: 4vh;
+`
 
+const KaKaoBtn = styled(KakaoLogin)`
+    padding: 0;
+    width: 25vw;
+    height: 7vh;
+    line-height: 44px;
+    color: #783c00;
+    background-color: #FFEB00;
+    border: 1px solid transparent;
+    border-radius: 3px;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    cursor: pointer;
+    &:hover{
+        box-shadow: 0 0px 15px 0 rgba(0, 0, 0, 0.2)
+    }
+`
 
 
 function LoginBox() {
-    const [isOnMouse, setIsOnMouse] = useState(false);
+/*     const [isOnMouse, setIsOnMouse] = useState(false);
     const navigate = useNavigate();
-
     function handleKakaoLogin(){
         alert("login");
         navigate("/toppick");
@@ -68,7 +96,14 @@ function LoginBox() {
 
     const handleOutMouse = () => {
         setIsOnMouse(false);
-    };
+    }; */
+
+
+
+
+    
+
+
 
     return(
         <LoginBoxContainer>
@@ -80,19 +115,30 @@ function LoginBox() {
                     <img src={vaiv_logo}></img>
                 </VaivImageContainer>
             </LogoContainer>
-            <LogoContainer>
-                <KakaoImageContainer isMouse = {isOnMouse}
+            <KakaoBtnWrapper>
+            {/* <KakaoImageContainer isMouse = {isOnMouse}
                     onClick={() => handleKakaoLogin()}
                     onMouseOver = {() => handleOnMouse()}
                     onMouseOut = {() => handleOutMouse()}
                 >
                     <img src={btn_login_kakao}></img>
-                </KakaoImageContainer>
+                </KakaoImageContainer> */}
 
-            </LogoContainer>
+                <KaKaoBtn
+                    token={KAKAO_KEY}
+                    onSuccess={console.log}
+                    onFail={console.error}
+                    onLogout={console.info}
+                
+                />
+
+
+
+            </KakaoBtnWrapper>
         </LoginBoxContainer>
     );
 }
 
 
 export default LoginBox;
+
