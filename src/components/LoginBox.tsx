@@ -4,10 +4,17 @@ import styled from "styled-components";
 import btn_login_kakao from "../assets/images/btn_login_kakao.png";
 import skku_logo from "../assets/images/skku_logo.png";
 import vaiv_logo from "../assets/images/vaiv_logo.png";
-import { motion } from "framer-motion";
 import React, {useState} from "react";
-import KakaoLogin from "react-kakao-login";
-import { KAKAO_KEY } from "../data/KakaoLoginData";
+
+
+
+declare global {
+    interface Window {
+      Kakao: any;
+    }
+}
+
+
 
 
 const LoginBoxContainer = styled.div`
@@ -63,32 +70,44 @@ const KakaoBtnWrapper = styled.div`
     padding-bottom: 4vh;
 `
 
-const KaKaoBtn = styled(KakaoLogin)`
-    padding: 0;
-    width: 25vw;
-    height: 7vh;
-    line-height: 44px;
-    color: #783c00;
-    background-color: #FFEB00;
-    border: 1px solid transparent;
-    border-radius: 3px;
-    font-size: 16px;
-    font-weight: bold;
-    text-align: center;
-    cursor: pointer;
-    &:hover{
-        box-shadow: 0 0px 15px 0 rgba(0, 0, 0, 0.2)
-    }
-`
+
+
 
 
 function LoginBox() {
-/*     const [isOnMouse, setIsOnMouse] = useState(false);
+    
+    
+    const [user,setUser] = useState(null);
+    const [isOnMouse, setIsOnMouse] = useState(false);
     const navigate = useNavigate();
-    function handleKakaoLogin(){
-        alert("login");
-        navigate("/toppick");
-    };
+
+    function handleKakaoLogin() {
+        window.Kakao.Auth.login({
+            success(){
+                window.Kakao.API.request({
+                    url:"/v2/user/me",
+                    success(res: any){
+                        console.log(res);
+                        console.log(res.kakao_account);
+                        console.log(res.kakao_account.email);
+                        console.log(res.kakao_account.profile.nickname);
+                        console.log(res.kakao_account.gender);
+                        console.log(res.id);
+                        console.log(res.connected_at);
+                        navigate("/toppick");
+                    },
+                    fail(err: any){
+                        console.log(err);
+                    },
+                })
+            },
+            fail(error: any){
+                console.log(error);
+            },
+        });
+      };
+
+  
 
     const handleOnMouse = () => {
         setIsOnMouse(true);
@@ -96,9 +115,9 @@ function LoginBox() {
 
     const handleOutMouse = () => {
         setIsOnMouse(false);
-    }; */
+    }; 
 
-
+ 
 
 
     
@@ -116,28 +135,19 @@ function LoginBox() {
                 </VaivImageContainer>
             </LogoContainer>
             <KakaoBtnWrapper>
-            {/* <KakaoImageContainer isMouse = {isOnMouse}
-                    onClick={() => handleKakaoLogin()}
-                    onMouseOver = {() => handleOnMouse()}
-                    onMouseOut = {() => handleOutMouse()}
+            <KakaoImageContainer isMouse = {isOnMouse}
+                    onClick={handleKakaoLogin}
+                    onMouseOver = {handleOnMouse}
+                    onMouseOut = {handleOutMouse}
                 >
                     <img src={btn_login_kakao}></img>
-                </KakaoImageContainer> */}
-
-                <KaKaoBtn
-                    token={KAKAO_KEY}
-                    onSuccess={console.log}
-                    onFail={console.error}
-                    onLogout={console.info}
-                
-                />
-
-
-
+            </KakaoImageContainer>
             </KakaoBtnWrapper>
         </LoginBoxContainer>
     );
 }
+
+
 
 
 export default LoginBox;
