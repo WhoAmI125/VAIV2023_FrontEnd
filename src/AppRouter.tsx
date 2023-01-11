@@ -3,7 +3,7 @@ import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import LoginPage from "./pages/LoginPage";
 import TopPickPage from "./pages/TopPickPage";
 import PortfolioPage from "./pages/PortfolioPage";
-import KakaoLoginPage from "./pages/KakaoLoginPage";
+
 import { useRecoilValue } from "recoil";
 import { isLoggedInState } from "./atoms/LoginAtom";
 
@@ -14,7 +14,6 @@ function AppRouter() {
             <Routes>
                 <Route path="/" element={<LoginPage />} />
                 <Route path="/toppick" element={<TopPickPage />} />
-                <Route path="/kakologin" element={<KakaoLoginPage />} />
                 <Route path="/portfolio" element={<PortfolioPage />} />
             </Routes>
         </BrowserRouter>

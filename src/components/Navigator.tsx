@@ -1,41 +1,104 @@
 import styled from "styled-components";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import vaiv_logo from "../assets/images/vaiv_logo.png";
+import {BiUserCircle} from "react-icons/bi"
+
+
 
 const NavigatorConainer = styled.div`
-    background-color: #f7f7f7;
+    background-color: #f7f7f7e6;
+    position: fixed;
     display: flex;
-    width:100vw;
-    height: 20vh;
-    align-items: center;
-    border-radius: 1vw;
-    box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.5);
+    width: 100%;
+    height: 4vh;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.3);
+    margin-top: 15vh;
+    padding-left: 10vw;
 `
-const NavigatorHomeButton = styled.div`
+
+
+interface INavigatorButton {
+    isMouse: boolean;
+}
+
+const NavigatorButton = styled.div<INavigatorButton>`
+    display:flex;
+    width: 25vw;
+    align-items: center;
+    justify-content: center;
+    font-size : 1.5rem;
+    font-weight: bold;
+    background-color: ${(props) => (props.isMouse ? "#25252544" : "#f7f7f7e6")};
+    color: ${(props) => (props.isMouse ? "white" : " ")};
+    cursor:pointer;
+`
+
+const NavigatorUserConainer = styled.div`
     display:flex;
     width: 20vw;
-    height: 14vh;
     align-items: center;
-    font-size : 2.5rem;
+    justify-content: center;
+    font-weight: bold;
+    margin-left: 25vw;
+    color: #02032eef;
 `
 
-const LogOutButton = styled.button`
+const NavigatorLogoutConainer = styled.div`
     display: flex;
-    height: 10vh;
     width: 10vw;
+    align-items: center;
+    justify-content: center;
+    font-size : 1.2rem;
+    font-weight: bold;
+    cursor:pointer;
 `
+
+const NavigatorUserNameConainer =styled.div`
+    display: flex;
+    width: 10vw;
+    align-items: center;
+    justify-content: center;
+    font-size : 0.9rem;
+    margin-left: 2vw;
+`
+
+
 
 function Navigator(){
+
+    const [isOnMouseTopPick, setIsOnMouseTopPick] = useState(false);
+    const [isOnMousePortfolio, setIsOnMousePortfolio] = useState(false);
     const navigate = useNavigate();
 
+    const username_default = "Stranger";
 
-    function handleKakaoLogin(){
+    const handleOnMouseTopPick = () => {
+        setIsOnMouseTopPick(true);
+    };
+    const handleOutMouseTopPick = () => {
+        setIsOnMouseTopPick(false);
+    }; 
+    const handleOnMousePortfolio = () => {
+        setIsOnMousePortfolio(true);
+    };
+    const handleOutMousePortfolio = () => {
+        setIsOnMousePortfolio(false);
+    }; 
+    const handlePortfolioClick = () =>{
+        navigate("/portfolio");
+    }
+    const handleTopPickClick = () =>{
+        navigate("/toppick");
+    }
+
+
+    function handleKakaoLogOut(){
         if(window.Kakao.Auth.getAccessToken()){
             window.Kakao.API.request({
                 url:"/v1/user/unlink",
                 success(res: any){
                     alert("로그아웃 되었습니다");
-                    navigate('/');
                     console.log(res);
                 },
                 fail(error: any){
@@ -43,20 +106,39 @@ function Navigator(){
                 },
             });
             window.Kakao.Auth.setAccessToken(undefined);
+          
         }
-
+        navigate('/');
     }
 
 
     return(
         <NavigatorConainer>
-            <NavigatorHomeButton>
-                Vaiv
-            </NavigatorHomeButton>
-            <LogOutButton onClick={handleKakaoLogin}>
-                로그아웃
-            </LogOutButton>
+            <NavigatorButton 
+                onClick = {handleTopPickClick} 
+                isMouse = {isOnMouseTopPick}
+                onMouseOver = {handleOnMouseTopPick}
+                onMouseOut = {handleOutMouseTopPick}>
+                TopPick
+            </NavigatorButton>
+            <NavigatorButton 
+                onClick = {handlePortfolioClick} 
+                isMouse = {isOnMousePortfolio}
+                onMouseOver = {handleOnMousePortfolio}
+                onMouseOut = {handleOutMousePortfolio}>
+                Portfolio
+            </NavigatorButton>
+
+            <NavigatorUserConainer>
+                
+                <NavigatorUserNameConainer>
+                    <BiUserCircle size="20%"></BiUserCircle>
+                    {username_default} 님
+                </NavigatorUserNameConainer>
+                <NavigatorLogoutConainer onClick={handleKakaoLogOut}>로그아웃</NavigatorLogoutConainer>
+            </NavigatorUserConainer>
         </NavigatorConainer>
+       
     );
 }
 

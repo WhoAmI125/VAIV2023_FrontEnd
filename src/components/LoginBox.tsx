@@ -59,6 +59,7 @@ const KakaoImageContainer = styled.div<IKakaoImageContainer>`
     padding-top: 2vh;
     padding-bottom: 2vh;
     cursor: pointer;
+
 `
 
 const KakaoBtnWrapper = styled.div`
@@ -135,13 +136,13 @@ function LoginBox() {
                 </VaivImageContainer>
             </LogoContainer>
             <KakaoBtnWrapper>
-            <KakaoImageContainer isMouse = {isOnMouse}
+                <KakaoImageContainer isMouse = {isOnMouse}
                     onClick={handleKakaoLogin}
                     onMouseOver = {handleOnMouse}
                     onMouseOut = {handleOutMouse}
                 >
-                    <img src={btn_login_kakao}></img>
-            </KakaoImageContainer>
+                    <img src ={btn_login_kakao}></img>
+                </KakaoImageContainer>
             </KakaoBtnWrapper>
         </LoginBoxContainer>
     );
