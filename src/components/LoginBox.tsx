@@ -8,6 +8,7 @@ import { motion } from "framer-motion";
 import React, { useState } from "react";
 
 const LoginBoxContainer = styled.div`
+  display: flex;
   flex-direction: column;
   background-color: #f7f7f7;
   width: 40vw;
@@ -15,14 +16,7 @@ const LoginBoxContainer = styled.div`
   border-radius: 1vw;
   box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.5);
 `;
-    display:flex;
-    flex-direction: column;
-    background-color: #f7f7f7;
-    width: 40vw;
-    height: 36vh;
-    border-radius: 1vw;
-    box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.5);
-`
+
 const LogoContainer = styled.div`
   height: 18vh;
   width: 40vw;
@@ -55,82 +49,52 @@ const KakaoImageContainer = styled.div<IKakaoImageContainer>`
   padding-bottom: 2vh;
   cursor: pointer;
 `;
-    display:flex;
-    height: ${(props) => (props.isMouse ? "12.2vh" : "12vh")};
-    justify-content: center;
-    padding-top: 2vh;
-    padding-bottom: 2vh;
-    cursor: pointer;
-
-`
 
 const KakaoBtnWrapper = styled.div`
-    display: flex;
-    height: 18vh;
-    width: 40vw;
-    justify-content: center;
-    align-items : center;
-    padding-bottom: 4vh;
-`
-
-
-
-
+  display: flex;
+  height: 18vh;
+  width: 40vw;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 4vh;
+`;
 
 function LoginBox() {
   const [isOnMouse, setIsOnMouse] = useState(false);
 
   function handleKakaoLogin() {
-    alert("login");
-  }
-    function handleKakaoLogin() {
-        window.Kakao.Auth.login({
-            success(){
-                window.Kakao.API.request({
-                    url:"/v2/user/me",
-                    success(res: any){
-                        console.log(res);
-                        console.log(res.kakao_account);
-                        console.log(res.kakao_account.email);
-                        console.log(res.kakao_account.profile.nickname);
-                        console.log(res.kakao_account.gender);
-                        console.log(res.id);
-                        console.log(res.connected_at);
-                        navigate("/toppick");
-                    },
-                    fail(err: any){
-                        console.log(err);
-                    },
-                })
-            },
-            fail(error: any){
-                console.log(error);
-            },
+    window.Kakao.Auth.login({
+      success() {
+        window.Kakao.API.request({
+          url: "/v2/user/me",
+          success(res: any) {
+            console.log(res);
+            console.log(res.kakao_account);
+            console.log(res.kakao_account.email);
+            console.log(res.kakao_account.profile.nickname);
+            console.log(res.kakao_account.gender);
+            console.log(res.id);
+            console.log(res.connected_at);
+            navigate("/toppick");
+          },
+          fail(err: any) {
+            console.log(err);
+          },
         });
-      };
+      },
+      fail(error: any) {
+        console.log(error);
+      },
+    });
+  }
 
   const handleOnMouse = () => {
     setIsOnMouse(true);
   };
-  
-
-    const handleOnMouse = () => {
-        setIsOnMouse(true);
-    };
 
   const handleOutMouse = () => {
     setIsOnMouse(false);
   };
-    const handleOutMouse = () => {
-        setIsOnMouse(false);
-    }; 
-
- 
-
-
-    
-
-
 
   return (
     <LoginBoxContainer>
@@ -156,9 +120,4 @@ function LoginBox() {
   );
 }
 
-
-
-
 export default LoginBox;
-
-
