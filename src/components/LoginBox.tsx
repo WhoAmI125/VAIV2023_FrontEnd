@@ -7,6 +7,12 @@ import vaiv_logo from "../assets/images/vaiv_logo.png";
 import { motion } from "framer-motion";
 import React, { useState } from "react";
 
+declare global {
+  interface Window {
+    Kakao: any;
+  }
+}
+
 const LoginBoxContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -61,6 +67,7 @@ const KakaoBtnWrapper = styled.div`
 
 function LoginBox() {
   const [isOnMouse, setIsOnMouse] = useState(false);
+  const navigate = useNavigate();
 
   function handleKakaoLogin() {
     window.Kakao.Auth.login({
