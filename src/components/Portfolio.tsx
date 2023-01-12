@@ -11,6 +11,8 @@ const BaseContainer = styled.div`
   flex-direction: row;
   justify-content: center;
   align-items: center;
+
+  padding-top: 5vh;
 `;
 
 const SelectAccountContainer = styled.div`

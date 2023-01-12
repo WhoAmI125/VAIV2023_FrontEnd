@@ -1,3 +1,5 @@
+import Navigator from "../components/Navigator";
+import Title from "../components/Title";
 import styled from "styled-components";
 import { useState } from "react";
 import Portfolio from "../components/Portfolio";
@@ -7,15 +9,24 @@ const PortpolioPageContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: 100%;
   background-color: #f7f7f7;
+`;
+
+const PaddingContainer = styled.div`
+  height: 19vh;
 `;
 
 function PortpolioPage() {
   return (
-    <PortpolioPageContainer>
-      <Portfolio></Portfolio>
-    </PortpolioPageContainer>
+    <>
+      <Title />
+      <Navigator />
+      <PaddingContainer></PaddingContainer>
+      <PortpolioPageContainer>
+        <Portfolio></Portfolio>
+      </PortpolioPageContainer>
+    </>
   );
 }
 
