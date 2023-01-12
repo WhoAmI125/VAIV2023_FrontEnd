@@ -8,7 +8,10 @@ import React, { useState } from "react";
 
 function ShowAnalysis() {
   const tabTitleList = ["통계", "비중", "흐름"];
-
+  const asset_info = {
+    total_gain: 278000,
+    total_profit: 16.02,
+  };
   return (
     <>
       <div></div>
