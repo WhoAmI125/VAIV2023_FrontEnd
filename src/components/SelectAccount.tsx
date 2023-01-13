@@ -13,14 +13,26 @@ const AccountSelect = styled.select`
 
 const AccountOption = styled.option``;
 
-function SelectAccount() {
-  // DB에서 계좌 리스트 불러오기
-  const tempAccountList = ["skku", "vaiv", "winter"];
+type AccountProps = {
+  getAccount(account: string): void;
+};
+
+function SelectAccount({ getAccount }: AccountProps) {
+  // SessionStorage에서 계좌 리스트 불러오기
+  const localStore = localStorage.getItem("account_list");
+  const accountList: string[] = localStore && JSON.parse(localStore);
+
+  const [newAccount, setNewAccount] = useState("");
+
+  function onSelect(event: React.ChangeEvent<HTMLSelectElement>) {
+    getAccount(event.target.value);
+  }
+
   return (
     <>
       <label>현재 계좌</label>
-      <AccountSelect>
-        {tempAccountList.map((account) => (
+      <AccountSelect onChange={onSelect}>
+        {accountList.map((account) => (
           <AccountOption value={account}>{account}</AccountOption>
         ))}
       </AccountSelect>
