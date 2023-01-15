@@ -102,16 +102,17 @@ function ShowAnalysis({ account }: AccountProps) {
     );
   }
   function ShowRatio() {
-    return <p>Two</p>;
+    return <p>준비중입니다.</p>;
   }
   function ShowFlow() {
-    return <p>Three</p>;
+    return <p>준비중입니다.</p>;
   }
 
   const tabContArr = [
     {
       tabTitle: (
         <TabTitleDiv
+          key="statistics"
           className={activeIndex === 0 ? "is-active" : "deactive"}
           onClick={() => tabClickHandler(0)}
         >
@@ -128,6 +129,7 @@ function ShowAnalysis({ account }: AccountProps) {
     {
       tabTitle: (
         <TabTitleDiv
+          key="ratio"
           className={activeIndex === 1 ? "is-active" : "deactive"}
           onClick={() => tabClickHandler(1)}
         >
@@ -144,6 +146,7 @@ function ShowAnalysis({ account }: AccountProps) {
     {
       tabTitle: (
         <TabTitleDiv
+          key="flow"
           className={activeIndex === 1 ? "is-active" : "deactive"}
           onClick={() => tabClickHandler(2)}
         >

@@ -33,7 +33,9 @@ function SelectAccount({ getAccount }: AccountProps) {
       <label>현재 계좌</label>
       <AccountSelect onChange={onSelect}>
         {accountList.map((account) => (
-          <AccountOption value={account}>{account}</AccountOption>
+          <AccountOption value={account} key={account}>
+            {account}
+          </AccountOption>
         ))}
       </AccountSelect>
     </>
