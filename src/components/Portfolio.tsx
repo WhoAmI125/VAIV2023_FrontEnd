@@ -5,12 +5,15 @@ import { motion } from "framer-motion";
 import React, { useState } from "react";
 import SelectAccount from "./SelectAccount";
 import ShowAnalysis from "./Analysis";
+import ShowStockList from "./AssetStockList";
 
 const BaseContainer = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
+
+  padding-top: 5vh;
 `;
 
 const SelectAccountContainer = styled.div`
@@ -30,7 +33,7 @@ const BtnContainer = styled.button`
 const AnalysisContainer = styled.div`
   margin-top: 5vh;
   width: 60vw;
-  height: 40vh;
+  height: 35vh;
 
   background-color: rgba(250, 250, 250, 0.876);
 
@@ -38,15 +41,34 @@ const AnalysisContainer = styled.div`
   border-radius: 30px;
 `;
 
+const StockListContainer = styled.div`
+  width: 80vw;
+  margin-top: 5vh;
+
+  background-color: red;
+  min-height: 10vh;
+`;
+
 //background-color: #cadcff; - 연하늘색
 
 function Portfolio() {
-  const [account, selectAccount] = React.useState();
+  // SesstionStorage에서 계좌 리스트 불러오기
+  const localStore = localStorage.getItem("account_list");
+  const accountList: string[] = localStore && JSON.parse(localStore);
+
+  const [currAccount, setAccount] = useState(accountList[0]);
+
+  function getAccount(account: string): void {
+    setAccount(account);
+  }
+
   return (
     <>
       <BaseContainer>
         <SelectAccountContainer>
-          <SelectAccount></SelectAccount>
+          <SelectAccount getAccount={getAccount}></SelectAccount>
+          <p>선택된 계좌 : {currAccount}</p>
+          <p>id : {localStorage.getItem("id")}</p>
         </SelectAccountContainer>
 
         <BtnContainer>Simulate</BtnContainer>
@@ -54,8 +76,12 @@ function Portfolio() {
       </BaseContainer>
 
       <AnalysisContainer>
-        <ShowAnalysis></ShowAnalysis>
+        <ShowAnalysis account={currAccount}></ShowAnalysis>
       </AnalysisContainer>
+
+      <StockListContainer>
+        <ShowStockList account={currAccount}></ShowStockList>
+      </StockListContainer>
     </>
   );
 }
