@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import React, { useState } from "react";
 import SelectAccount from "./SelectAccount";
 import ShowAnalysis from "./Analysis";
+import ShowStockList from "./AssetStockList";
 
 const BaseContainer = styled.div`
   display: flex;
@@ -40,6 +41,14 @@ const AnalysisContainer = styled.div`
   border-radius: 30px;
 `;
 
+const StockListContainer = styled.div`
+  width: 80vw;
+  margin-top: 5vh;
+
+  background-color: red;
+  min-height: 10vh;
+`;
+
 //background-color: #cadcff; - 연하늘색
 
 function Portfolio() {
@@ -69,6 +78,10 @@ function Portfolio() {
       <AnalysisContainer>
         <ShowAnalysis account={currAccount}></ShowAnalysis>
       </AnalysisContainer>
+
+      <StockListContainer>
+        <ShowStockList account={currAccount}></ShowStockList>
+      </StockListContainer>
     </>
   );
 }
