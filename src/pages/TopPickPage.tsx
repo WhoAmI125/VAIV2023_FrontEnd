@@ -51,6 +51,10 @@ const Tabledata = styled.div`
 //     background: white;
 // `
 
+const ButtonContainer = styled.div`
+    display: flex;
+`
+
 const KosButton = styled.button`
     /*공통 스타일*/
     // display: inline-flex;
@@ -65,6 +69,7 @@ const KosButton = styled.button`
     cursor: pointer;
     padding-left: 1rem;
     padding-right: 1rem;
+    margin-right: 1rem;
 
 
     /*크기*/
@@ -146,9 +151,10 @@ function TopPickPage(){
             <Title/>
             <Navigator/>
             <PaddingContainer></PaddingContainer>
-            <KosButton onClick={() => setCheck(true)}>KOSPI</KosButton>
-            <br></br>
-            <KosButton onClick={() => setCheck(false)}>KOSDAQ</KosButton>
+            <ButtonContainer>
+                <KosButton onClick={() => setCheck(true)}>KOSPI</KosButton>
+                <KosButton onClick={() => setCheck(false)}>KOSDAQ</KosButton>
+            </ButtonContainer>
             <br></br>
             <Pick>Today's Top Pick</Pick>
             <TableContainer>
@@ -199,49 +205,3 @@ function TopPickPage(){
 
 
 export default TopPickPage;
-
-// const Testcontainer = styled.div`
-//     height:50vh;
-//     font-size: 2rem;
-//     // marginLeft: 8;
-//     // display: "flex";
-//     // flexDirection: "column";
-//     // justifyContent: "center";
-// `
-// const NameText = styled.span`
-//     color: "black";
-//     fontSize: 16;
-//     fontweight: "bold";
-//     margin: 0 10 0 0 ;
-// `
-
-// const CommentText = styled.span`
-//     color: "black";
-//     fontSize: 16;
-//     margin: 0 10 0 0;
-// `
-
-// const Tableheader = styled.table`
-//     // justify-content: center;
-//     // text-align: center;
-//     fontSize: 16;
-//     margin: auto;
-// `
-
-// const Tablerow = styled.div`
-//     height: 40px;
-//     justify-content: center;
-//     text-align: center;
-//     line-height: 40px;
-// `
-// const Tabledata = styled.span`
-//     height: 40px;
-//     justify-content: center;
-//     text-align: center;
-//     line-height: 40px;
-// `
-
-// const Table = styled.table`
-//     text-align: center;
-//     justify-content: center;
-// `
