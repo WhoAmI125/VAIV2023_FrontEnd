@@ -4,7 +4,6 @@ import styled from "styled-components";
 import btn_login_kakao from "../assets/images/btn_login_kakao.png";
 import skku_logo from "../assets/images/skku_logo.png";
 import vaiv_logo from "../assets/images/vaiv_logo.png";
-import { motion } from "framer-motion";
 import React, { useState } from "react";
 import {
   SellStockType,
@@ -63,15 +62,6 @@ const KakaoImageContainer = styled.div<IKakaoImageContainer>`
   cursor: pointer;
 `;
 
-const KakaoBtnWrapper = styled.div`
-  display: flex;
-  height: 18vh;
-  width: 40vw;
-  justify-content: center;
-  align-items: center;
-  padding-bottom: 4vh;
-`;
-
 function LoginBox() {
   const [isOnMouse, setIsOnMouse] = useState(false);
   const navigate = useNavigate();
@@ -109,7 +99,7 @@ function LoginBox() {
     holding_stock: [
       {
         ticker: "A02",
-        stockname: "hi",
+        stockname: "naver",
         buy_date: "2022-12-01",
         buy_price: 7000,
         quantity: 7,
@@ -117,7 +107,7 @@ function LoginBox() {
       },
       {
         ticker: "A03",
-        stockname: "hello",
+        stockname: "kakao",
         buy_date: "2022-12-01",
         buy_price: 8000,
         quantity: 8,
@@ -125,7 +115,7 @@ function LoginBox() {
       },
       {
         ticker: "A04",
-        stockname: "wow",
+        stockname: "SKhynix",
         buy_date: "2022-12-01",
         buy_price: 9000,
         quantity: 9,

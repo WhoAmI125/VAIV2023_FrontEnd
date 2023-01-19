@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { motion } from "framer-motion";
 import React, { useState, useMemo } from "react";
 import {
   SellStockType,
@@ -54,8 +53,8 @@ type AccountProps = {
   account: string;
 };
 
-function ShowStockList({ account }: AccountProps) {
+function AssetStockList({ account }: AccountProps) {
   return <></>;
 }
 
-export default ShowStockList;
+export default AssetStockList;

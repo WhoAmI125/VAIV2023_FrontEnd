@@ -4,7 +4,8 @@ import LoginPage from "./pages/LoginPage";
 import TopPickPage from "./pages/TopPickPage";
 import PortfolioPage from "./pages/PortfolioPage";
 
-import { useRecoilValue } from "recoil";
+
+
 import { isLoggedInState } from "./atoms/LoginAtom";
 
 function AppRouter() {

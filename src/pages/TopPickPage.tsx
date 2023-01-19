@@ -120,7 +120,7 @@ function TopPickPage(){
 
     const [data, setData] = useState(String);
     let obj;
-    useEffect(()=>{
+/*     useEffect(()=>{
         // let completed = false;
 
         axios.get(`/toppick`,
@@ -140,7 +140,7 @@ function TopPickPage(){
             setData(realwant) // 콤마 빼고 항목들
         });
         
-    }, []);
+    }, []); */
 
     const [check, setCheck] = useState(true);
 

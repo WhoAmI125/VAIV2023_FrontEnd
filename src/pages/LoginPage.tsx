@@ -17,8 +17,6 @@ function LoginPage(){
             </LoginPageConatiner>
         </>
     );
-
-    
 }
 
 
